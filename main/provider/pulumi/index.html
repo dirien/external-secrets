@@ -2552,6 +2552,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#pushsecrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      PushSecrets
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3283,6 +3292,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#pushsecrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      PushSecrets
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3328,7 +3346,7 @@
 <span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;NAME_OF_KUBE_SECRET&gt;</span>
 <span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;KEY_IN_KUBE_SECRET&gt;</span>
 </code></pre></div>
-<p>If required, the API URL (<code>apiUrl</code>) can be customized as well. If not specified, the default value is <code>https://api.pulumi.com</code>.</p>
+<p>If required, the API URL (<code>apiUrl</code>) can be customized as well. If not specified, the default value is <code>https://api.pulumi.com/api/preview</code>.</p>
 <h3 id="referencing-secrets">Referencing Secrets</h3>
 <p>Secrets can be referenced by defining the <code>key</code> containing the JSON path to the secret. Pulumi ESC secrets are internally organized as a JSON object.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external-secrets.io/v1beta1</span>
@@ -3367,6 +3385,28 @@
 <li>root.array["*"].field</li>
 </ul>
 <p>See <a href="https://www.pulumi.com/docs/concepts/options/ignorechanges/">Pulumi's documentation</a> for more information.</p>
+<h3 id="pushsecrets">PushSecrets</h3>
+<p>With the latest release of Pulumi ESC, secrets can be pushed to the Pulumi service. This can be done by creating a <code>PushSecrets</code> object.</p>
+<p>Here is a basic example of how to define a <code>PushSecret</code> object:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external-secrets.io/v1alpha1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PushSecret</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">push-secret-example</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">refreshInterval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">secret</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;NAME_OF_KUBE_SECRET&gt;</span>
+<span class="w">  </span><span class="nt">secretStoreRefs</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ClusterSecretStore</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">secret-store</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">secretKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;KEY_IN_KUBE_SECRET&gt;</span>
+<span class="w">      </span><span class="nt">remoteRef</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">remoteKey</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;PULUMI_PATH_SYNTAX&gt;</span>
+</code></pre></div>
+<p>This will then push the secret to the Pulumi service. If the secret already exists, it will be updated.</p>
 
 
 
