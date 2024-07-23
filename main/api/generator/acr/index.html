@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../../pictures/eso-round-logo.svg">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.29">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.76a95c52.min.css">
       
       
 
@@ -1945,6 +1945,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -2032,6 +2036,27 @@
   
   <span class="md-ellipsis">
     Azure Key Vault
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../provider/bitwarden-secrets-manager/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bitwarden Secrets Manager
   </span>
   
 
@@ -2473,6 +2498,27 @@
   
   <span class="md-ellipsis">
     Scaleway
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../provider/delinea/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Delinea
   </span>
   
 
@@ -3294,8 +3340,8 @@ The token is generated for a particular ACR registry defined in <code>spec.regis
 <li>managed identity</li>
 <li>workload identity</li>
 </ul>
-<p>The generated token will inherit the permissions from the assigned policy. I.e. when you assign a read-only policy all generated tokens will be read-only. 
-You <strong>must</strong> <a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-steps">assign a Azure RBAC role</a>, such as <code>AcrPush</code> or <code>AcrPull</code> to the service principal in order to be able to authenticate with the Azure container registry API. </p>
+<p>The generated token will inherit the permissions from the assigned policy. I.e. when you assign a read-only policy all generated tokens will be read-only.
+You <strong>must</strong> <a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-steps">assign a Azure RBAC role</a>, such as <code>AcrPush</code> or <code>AcrPull</code> to the service principal or managed identity in order to be able to authenticate with the Azure container registry API.</p>
 <p>You can scope tokens to a particular repository using <code>spec.scope</code>.</p>
 <h2 id="scope">Scope</h2>
 <p>First, an Azure Active Directory access token is obtained with the desired authentication method.
@@ -3306,7 +3352,7 @@ If <code>spec.scope</code> if it is defined it obtains an ACR access token. If  
 <li>refresh tokens can are scoped to whatever policy is attached to the identity that creates the acr refresh token</li>
 </ul>
 <p>The Scope grammar is defined in the <a href="https://docs.docker.com/registry/spec/auth/scope/">Docker Registry spec</a>.
-Note: You <strong>can not</strong> use a wildcards in the scope parameter, you can match exactly one repository and defined multiple actions like <code>pull</code> or <code>push</code>.</p>
+Note: You <strong>can not</strong> use wildcards in the scope parameter -- you can match exactly one repository and can define multiple actions like <code>pull</code> or <code>push</code>.</p>
 <p>Example scopes:</p>
 <div class="highlight"><pre><span></span><code>repository:my-repository:pull,push
 repository:my-repository:pull
@@ -3376,7 +3422,7 @@ repository:my-repository:pull
 <span class="w">            </span><span class="no">&quot;auths&quot;: {</span>
 <span class="w">              </span><span class="no">&quot;myregistry.azurecr.io&quot;: {</span>
 <span class="w">                </span><span class="no">&quot;username&quot;: &quot;{{ .username }}&quot;,</span>
-<span class="w">                </span><span class="no">&quot;identitytoken&quot;: &quot;{{ .password }}&quot;</span>
+<span class="w">                </span><span class="no">&quot;password&quot;: &quot;{{ .password }}&quot;</span>
 <span class="w">              </span><span class="no">}</span>
 <span class="w">            </span><span class="no">}</span>
 <span class="w">          </span><span class="no">}</span>
@@ -3440,7 +3486,7 @@ For a list of trademarks of The Linux Foundation, please see our <a href="https:
     <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
       
     
   </body>
